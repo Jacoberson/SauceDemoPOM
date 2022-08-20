@@ -1,51 +1,44 @@
 package com.github.jacoberson.pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+
+import com.github.jacoberson.pages.pageAssertions.LoginPageAssertions;
+import com.github.jacoberson.pages.pageElements.LoginPageElements;
 
 public class LoginPage {
+	private LoginPageElements elements;
+	private LoginPageAssertions assertions;
 	private WebDriver driver;
 
 	public LoginPage(WebDriver driver) {
 		this.driver = driver;
 	}
 
-	private WebElement usernameField() {
-		return driver.findElement(By.id("user-name"));
+	public LoginPageElements elements() {
+		elements = new LoginPageElements(driver);
+		return elements;
 	}
 
-	private WebElement passwordField() {
-		return driver.findElement(By.id("password"));
-	}
-
-	private WebElement loginButton() {
-		return driver.findElement(By.id("login-button"));
-	}
-
-	private WebElement closeAlertButton() {
-		return driver.findElement(By.className("error-button"));
+	public LoginPageAssertions assertions() {
+		assertions = new LoginPageAssertions(elements());
+		return assertions;
 	}
 
 	public boolean loginAlertDisplays() {
-		var loginAlert = driver
-				.findElements(By.cssSelector("h3[data-test='error']"));
-
-		return loginAlert.size() > 0;
+		return elements().loginAlertList().size() > 0;
 	}
 
 	public String getLoginAlertText() {
-		return driver.findElement(By.cssSelector("h3[data-test='error']"))
-				.getText();
+		return elements().loginAlert().getText();
 	}
 
 	public void login(String username, String password) {
-		usernameField().sendKeys(username);
-		passwordField().sendKeys(password);
-		loginButton().click();
+		elements().usernameField().sendKeys(username);
+		elements().passwordField().sendKeys(password);
+		elements().loginButton().click();
 	}
 
 	public void closeAlert() {
-		closeAlertButton().click();
+		elements().closeAlertButton().click();
 	}
 }

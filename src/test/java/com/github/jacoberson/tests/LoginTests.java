@@ -2,7 +2,6 @@ package com.github.jacoberson.tests;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -35,17 +34,18 @@ public class LoginTests {
 	public void loginAsValidUser() {
 		login.login("standard_user", "secret_sauce");
 
-		Assert.assertFalse(login.loginAlertDisplays());
+		login.assertions().assertLoginAlertDoesNotDisplay();
+
 		String url = driver.getCurrentUrl();
-		Assert.assertEquals(url, "https://www.saucedemo.com/inventory.html");
+		login.assertions().assertCorrectUrl(url);
 	}
 
 	@Test
 	public void loginAsLockedOutUser() {
 		login.login("locked_out_user", "secret_sauce");
 
-		Assert.assertTrue(login.loginAlertDisplays());
-		Assert.assertEquals(login.getLoginAlertText(),
+		login.assertions().assertLoginAlertDisplays();
+		login.assertions().assertCorrectLoginAlert(
 				"Epic sadface: Sorry, this user has been locked out.");
 	}
 
@@ -53,27 +53,25 @@ public class LoginTests {
 	public void loginWithoutUsername() {
 		login.login("", "secret_sauce");
 
-		Assert.assertTrue(login.loginAlertDisplays());
-		Assert.assertEquals(login.getLoginAlertText(),
-				"Epic sadface: Username is required");
+		login.assertions().assertLoginAlertDisplays();
+		login.assertions()
+				.assertCorrectLoginAlert("Epic sadface: Username is required");
 	}
 
 	@Test
 	public void loginWithoutPassword() {
 		login.login("standard_user", "");
 
-		Assert.assertTrue(login.loginAlertDisplays());
-		Assert.assertEquals(login.getLoginAlertText(),
-				"Epic sadface: Password is required");
+		login.assertions()
+				.assertCorrectLoginAlert("Epic sadface: Password is required");
 	}
 
 	@Test
 	public void loginWithoutUsernameOrPassword() {
 		login.login("", "");
 
-		Assert.assertTrue(login.loginAlertDisplays());
-		Assert.assertEquals(login.getLoginAlertText(),
-				"Epic sadface: Username is required");
+		login.assertions()
+				.assertCorrectLoginAlert("Epic sadface: Username is required");
 	}
 
 	@Test
@@ -81,7 +79,7 @@ public class LoginTests {
 		loginWithoutUsername();
 
 		login.closeAlert();
-		Assert.assertFalse(login.loginAlertDisplays());
+		login.assertions().assertLoginAlertDoesNotDisplay();
 	}
 
 }
