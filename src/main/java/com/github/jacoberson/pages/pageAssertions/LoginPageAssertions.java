@@ -11,10 +11,6 @@ public class LoginPageAssertions {
 		this.elements = elements;
 	}
 
-	public void assertCorrectUrl(String url) {
-		Assert.assertEquals(url, "https://www.saucedemo.com/inventory.html");
-	}
-
 	public void assertLoginAlertDoesNotDisplay() {
 		Assert.assertTrue(elements.loginAlertList().size() == 0);
 	}

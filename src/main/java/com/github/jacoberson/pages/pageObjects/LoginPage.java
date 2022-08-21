@@ -1,4 +1,4 @@
-package com.github.jacoberson.pages;
+package com.github.jacoberson.pages.pageObjects;
 
 import com.github.jacoberson.pages.pageAssertions.LoginPageAssertions;
 import com.github.jacoberson.pages.pageElements.LoginPageElements;
@@ -9,6 +9,7 @@ public class LoginPage {
 	private LoginPageElements elements;
 	private LoginPageAssertions assertions;
 	private Driver driver;
+	private String url = "https://www.saucedemo.com/";
 
 	public LoginPage(Driver driver) {
 		this.driver = driver;
@@ -22,6 +23,10 @@ public class LoginPage {
 	public LoginPageAssertions assertions() {
 		assertions = new LoginPageAssertions(elements());
 		return assertions;
+	}
+
+	public String getUrl() {
+		return url;
 	}
 
 	public boolean loginAlertDisplays() {

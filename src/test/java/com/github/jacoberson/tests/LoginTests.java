@@ -6,7 +6,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import com.github.jacoberson.pages.LoginPage;
+import com.github.jacoberson.pages.pageObjects.LoginPage;
 import com.github.jacoberson.utilities.TestUtils;
 
 import driverManagement.Driver;
@@ -15,14 +15,14 @@ import enums.Browser;
 
 public class LoginTests {
 	private Driver driver;
-	private LoginPage login;
+	private LoginPage loginPage;
 
 	@BeforeMethod
 	public void setUp() {
 		driver = WebCoreDriver.getInstance();
 		driver.start(Browser.CHROME);
-		driver.openPage("https://www.saucedemo.com/");
-		login = new LoginPage(driver);
+		loginPage = new LoginPage(driver);
+		driver.openPage(loginPage.getUrl());
 	}
 
 	@AfterMethod
@@ -35,14 +35,14 @@ public class LoginTests {
 		String username = data.get("username");
 		String password = data.get("password");
 
-		login.login(username, password);
+		loginPage.login(username, password);
 
-		if (login.loginAlertDisplays()) {
+		if (loginPage.loginAlertDisplays()) {
 			String alert = data.get("alert");
-			login.assertions().assertCorrectLoginAlert(alert);
+			loginPage.assertions().assertCorrectLoginAlert(alert);
 
-			login.closeAlert();
-			login.assertions().assertLoginAlertDoesNotDisplay();
+			loginPage.closeAlert();
+			loginPage.assertions().assertLoginAlertDoesNotDisplay();
 		}
 	}
 
