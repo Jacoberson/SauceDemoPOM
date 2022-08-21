@@ -2,13 +2,16 @@ package driverManagement;
 
 import java.util.List;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
+import elementManagement.strategies.findStrategies.ClassNameFindStrategy;
+import elementManagement.strategies.findStrategies.CssSelectorFindStrategy;
+import elementManagement.strategies.findStrategies.ElementFindStrategy;
+import elementManagement.strategies.findStrategies.IdFindStrategy;
 import enums.Browser;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
@@ -51,13 +54,43 @@ public class WebCoreDriver extends Driver {
 	}
 
 	@Override
-	public WebElement find(By by) {
-		return webDriver.findElement(by);
+	public WebElement find(ElementFindStrategy findStrategy) {
+		return webDriver.findElement(findStrategy.convertToBy());
 	}
 
 	@Override
-	public List<WebElement> findAll(By by) {
-		return webDriver.findElements(by);
+	public List<WebElement> findAll(ElementFindStrategy findStrategy) {
+		return webDriver.findElements(findStrategy.convertToBy());
+	}
+
+	@Override
+	public WebElement findById(String id) {
+		return find(new IdFindStrategy(id));
+	}
+
+	@Override
+	public WebElement findByClassName(String className) {
+		return find(new ClassNameFindStrategy(className));
+	}
+
+	@Override
+	public WebElement findByCssSelector(String cssSelector) {
+		return find(new CssSelectorFindStrategy(cssSelector));
+	}
+
+	@Override
+	public List<WebElement> findAllById(String id) {
+		return findAll(new IdFindStrategy(id));
+	}
+
+	@Override
+	public List<WebElement> findAllByClassName(String className) {
+		return findAll(new ClassNameFindStrategy(className));
+	}
+
+	@Override
+	public List<WebElement> findAllByCssSelector(String cssSelector) {
+		return findAll(new CssSelectorFindStrategy(cssSelector));
 	}
 
 }

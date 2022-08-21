@@ -2,7 +2,6 @@ package com.github.jacoberson.pages.pageElements;
 
 import java.util.List;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import driverManagement.Driver;
@@ -15,19 +14,19 @@ public class LoginPageElements {
 	}
 
 	public WebElement usernameField() {
-		return driver.find(By.id("user-name"));
+		return driver.findById("user-name");
 	}
 
 	public WebElement passwordField() {
-		return driver.find(By.id("password"));
+		return driver.findById("password");
 	}
 
 	public WebElement loginButton() {
-		return driver.find(By.id("login-button"));
+		return driver.findById("login-button");
 	}
 
 	public WebElement loginAlert() {
-		return driver.find(By.cssSelector("h3[data-test='error']"));
+		return driver.findByCssSelector("h3[data-test='error']");
 	}
 
 	/**
@@ -36,10 +35,10 @@ public class LoginPageElements {
 	 * @return list of 1 or empty list if no login alert
 	 */
 	public List<WebElement> loginAlertList() {
-		return driver.findAll(By.cssSelector("h3[data-test='error']"));
+		return driver.findAllByCssSelector("h3[data-test='error']");
 	}
 
 	public WebElement closeAlertButton() {
-		return driver.find(By.className("error-button"));
+		return driver.findByClassName("error-button");
 	}
 }

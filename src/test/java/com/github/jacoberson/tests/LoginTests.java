@@ -10,6 +10,7 @@ import com.github.jacoberson.pages.LoginPage;
 import com.github.jacoberson.utilities.TestUtils;
 
 import driverManagement.Driver;
+import driverManagement.WebCoreDriver;
 import enums.Browser;
 
 public class LoginTests {
@@ -18,6 +19,7 @@ public class LoginTests {
 
 	@BeforeMethod
 	public void setUp() {
+		driver = new WebCoreDriver();
 		driver.start(Browser.CHROME);
 		driver.openPage("https://www.saucedemo.com/");
 		login = new LoginPage(driver);
