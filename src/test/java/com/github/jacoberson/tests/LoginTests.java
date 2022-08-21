@@ -1,5 +1,7 @@
 package com.github.jacoberson.tests;
 
+import java.util.Hashtable;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
@@ -7,6 +9,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import com.github.jacoberson.pages.LoginPage;
+import com.github.jacoberson.utilities.TestUtils;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
@@ -30,56 +33,20 @@ public class LoginTests {
 		}
 	}
 
-	@Test
-	public void loginAsValidUser() {
-		login.login("standard_user", "secret_sauce");
+	@Test(dataProviderClass = TestUtils.class, dataProvider = "dp")
+	public void validateLogin(Hashtable<String, String> data) {
+		String username = data.get("username");
+		String password = data.get("password");
 
-		login.assertions().assertLoginAlertDoesNotDisplay();
+		login.login(username, password);
 
-		String url = driver.getCurrentUrl();
-		login.assertions().assertCorrectUrl(url);
-	}
+		if (login.loginAlertDisplays()) {
+			String alert = data.get("alert");
+			login.assertions().assertCorrectLoginAlert(alert);
 
-	@Test
-	public void loginAsLockedOutUser() {
-		login.login("locked_out_user", "secret_sauce");
-
-		login.assertions().assertLoginAlertDisplays();
-		login.assertions().assertCorrectLoginAlert(
-				"Epic sadface: Sorry, this user has been locked out.");
-	}
-
-	@Test
-	public void loginWithoutUsername() {
-		login.login("", "secret_sauce");
-
-		login.assertions().assertLoginAlertDisplays();
-		login.assertions()
-				.assertCorrectLoginAlert("Epic sadface: Username is required");
-	}
-
-	@Test
-	public void loginWithoutPassword() {
-		login.login("standard_user", "");
-
-		login.assertions()
-				.assertCorrectLoginAlert("Epic sadface: Password is required");
-	}
-
-	@Test
-	public void loginWithoutUsernameOrPassword() {
-		login.login("", "");
-
-		login.assertions()
-				.assertCorrectLoginAlert("Epic sadface: Username is required");
-	}
-
-	@Test
-	public void closeLoginAlert() {
-		loginWithoutUsername();
-
-		login.closeAlert();
-		login.assertions().assertLoginAlertDoesNotDisplay();
+			login.closeAlert();
+			login.assertions().assertLoginAlertDoesNotDisplay();
+		}
 	}
 
 }

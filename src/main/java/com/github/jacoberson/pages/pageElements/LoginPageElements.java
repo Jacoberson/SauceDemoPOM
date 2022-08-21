@@ -30,9 +30,9 @@ public class LoginPageElements {
 	}
 
 	/**
-	 * Used to determin if login alert exists
+	 * Used to determine if login alert exists
 	 * 
-	 * @return list of login alert or empty list if no login alert
+	 * @return list of 1 or empty list if no login alert
 	 */
 	public List<WebElement> loginAlertList() {
 		return driver.findElements(By.cssSelector("h3[data-test='error']"));
