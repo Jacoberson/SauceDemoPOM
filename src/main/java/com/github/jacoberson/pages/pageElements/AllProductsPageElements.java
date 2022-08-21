@@ -3,6 +3,7 @@ package com.github.jacoberson.pages.pageElements;
 import java.util.List;
 
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 
 import driverManagement.Driver;
 
@@ -11,6 +12,10 @@ public class AllProductsPageElements {
 
 	public AllProductsPageElements(Driver driver) {
 		this.driver = driver;
+	}
+
+	public List<WebElement> totalItemCount() {
+		return driver.findAllByClassName("inventory_item");
 	}
 
 	public List<WebElement> itemNameList() {
@@ -44,5 +49,9 @@ public class AllProductsPageElements {
 	public WebElement itemNameLink(String item) {
 		return driver.findByXpath(
 				String.format("//*[contains(text(), '%s')]", item));
+	}
+
+	public Select sortDropdown() {
+		return new Select(driver.findByClassName("product_sort_container"));
 	}
 }

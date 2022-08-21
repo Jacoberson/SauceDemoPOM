@@ -12,10 +12,10 @@ public class FooterElements {
 	}
 
 	public WebElement twitterLink() {
-		return driver.findByCssSelector("a[href^='https://twitter']");
+		return driver.findByXpath("//a[contains(text(), 'Twitter')]");
 	}
 
 	public WebElement facebookLink() {
-		return driver.findByCssSelector("a[href^='https://www.facebook']");
+		return driver.findByXpath("//a[contains(text(), 'Facebook')]");
 	}
 }

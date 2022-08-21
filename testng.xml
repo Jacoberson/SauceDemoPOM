@@ -6,4 +6,9 @@
       <class name="com.github.jacoberson.tests.LoginTests"/>
     </classes>
   </test> <!-- Test -->
+    <test thread-count="5" name="Products Tests">
+    <classes>
+      <class name="com.github.jacoberson.tests.AllProductsPageTests"/>
+    </classes>
+  </test> <!-- Test -->
 </suite> <!-- Suite -->

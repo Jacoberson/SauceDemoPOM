@@ -28,7 +28,7 @@ public class HeaderElements {
 	}
 
 	public List<WebElement> itemCountList() {
-		return driver.findAllByClassName("shopping_cart_link");
+		return driver.findAllByClassName("shopping_cart_badge");
 	}
 
 	public WebElement itemCount() {
