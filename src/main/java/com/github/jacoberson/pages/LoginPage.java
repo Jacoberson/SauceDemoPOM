@@ -1,16 +1,16 @@
 package com.github.jacoberson.pages;
 
-import org.openqa.selenium.WebDriver;
-
 import com.github.jacoberson.pages.pageAssertions.LoginPageAssertions;
 import com.github.jacoberson.pages.pageElements.LoginPageElements;
+
+import driverManagement.Driver;
 
 public class LoginPage {
 	private LoginPageElements elements;
 	private LoginPageAssertions assertions;
-	private WebDriver driver;
+	private Driver driver;
 
-	public LoginPage(WebDriver driver) {
+	public LoginPage(Driver driver) {
 		this.driver = driver;
 	}
 

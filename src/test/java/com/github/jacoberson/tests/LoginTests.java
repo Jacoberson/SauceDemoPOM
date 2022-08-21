@@ -2,8 +2,6 @@ package com.github.jacoberson.tests;
 
 import java.util.Hashtable;
 
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -11,26 +9,23 @@ import org.testng.annotations.Test;
 import com.github.jacoberson.pages.LoginPage;
 import com.github.jacoberson.utilities.TestUtils;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
+import driverManagement.Driver;
+import enums.Browser;
 
 public class LoginTests {
-	private WebDriver driver;
+	private Driver driver;
 	private LoginPage login;
 
 	@BeforeMethod
 	public void setUp() {
-		WebDriverManager.chromedriver().setup();
-		driver = new ChromeDriver();
-		driver.manage().window().maximize();
-		driver.get("https://www.saucedemo.com/");
+		driver.start(Browser.CHROME);
+		driver.openPage("https://www.saucedemo.com/");
 		login = new LoginPage(driver);
 	}
 
 	@AfterMethod
 	public void tearDown() {
-		if (driver != null) {
-			driver.quit();
-		}
+		driver.quit();
 	}
 
 	@Test(dataProviderClass = TestUtils.class, dataProvider = "dp")
