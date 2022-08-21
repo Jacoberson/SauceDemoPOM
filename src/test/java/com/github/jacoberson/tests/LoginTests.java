@@ -31,7 +31,7 @@ public class LoginTests {
 	}
 
 	@Test(dataProviderClass = TestUtils.class, dataProvider = "dp")
-	public void validateLogin(Hashtable<String, String> data) {
+	public void verifyLogin(Hashtable<String, String> data) {
 		String username = data.get("username");
 		String password = data.get("password");
 

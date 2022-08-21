@@ -6,7 +6,7 @@ import com.github.jacoberson.pages.pageObjects.Header;
 import driverManagement.Driver;
 
 public abstract class BasePage {
-	private Driver driver;
+	protected Driver driver;
 
 	public BasePage(Driver driver) {
 		this.driver = driver;

@@ -2,6 +2,7 @@ package driverManagement;
 
 import java.util.List;
 
+import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -12,6 +13,7 @@ import elementManagement.strategies.findStrategies.ClassNameFindStrategy;
 import elementManagement.strategies.findStrategies.CssSelectorFindStrategy;
 import elementManagement.strategies.findStrategies.ElementFindStrategy;
 import elementManagement.strategies.findStrategies.IdFindStrategy;
+import elementManagement.strategies.findStrategies.XpathFindStrategy;
 import enums.Browser;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
@@ -85,6 +87,11 @@ public class WebCoreDriver extends Driver {
 	}
 
 	@Override
+	public WebElement findByXpath(String xpath) {
+		return find(new XpathFindStrategy(xpath));
+	}
+
+	@Override
 	public WebElement findByCssSelector(String cssSelector) {
 		return find(new CssSelectorFindStrategy(cssSelector));
 	}
@@ -102,6 +109,23 @@ public class WebCoreDriver extends Driver {
 	@Override
 	public List<WebElement> findAllByCssSelector(String cssSelector) {
 		return findAll(new CssSelectorFindStrategy(cssSelector));
+
+	}
+
+	@Override
+	public List<WebElement> findAllByXpath(String xpath) {
+		return findAll(new XpathFindStrategy(xpath));
+	}
+
+	// @Override
+	// public void getCookies() {
+	// // TODO Auto-generated method stub
+	//
+	// }
+
+	@Override
+	public void addCookie(Cookie cookie) {
+		webDriver.manage().addCookie(cookie);
 	}
 
 }
