@@ -19,7 +19,7 @@ public class LoginTests {
 
 	@BeforeMethod
 	public void setUp() {
-		driver = new WebCoreDriver();
+		driver = WebCoreDriver.getInstance();
 		driver.start(Browser.CHROME);
 		driver.openPage("https://www.saucedemo.com/");
 		login = new LoginPage(driver);

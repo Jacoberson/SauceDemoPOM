@@ -16,7 +16,18 @@ import enums.Browser;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class WebCoreDriver extends Driver {
-	private WebDriver webDriver;
+	private static WebDriver webDriver;
+	private static WebCoreDriver instance;
+
+	private WebCoreDriver() {
+	}
+
+	public static WebCoreDriver getInstance() {
+		if (instance == null) {
+			instance = new WebCoreDriver();
+		}
+		return instance;
+	}
 
 	@Override
 	public void start(Browser browser) {
