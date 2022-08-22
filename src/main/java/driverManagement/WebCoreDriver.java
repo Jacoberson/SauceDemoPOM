@@ -1,5 +1,6 @@
 package driverManagement;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.openqa.selenium.Cookie;
@@ -126,6 +127,23 @@ public class WebCoreDriver extends Driver {
 	@Override
 	public void addCookie(Cookie cookie) {
 		webDriver.manage().addCookie(cookie);
+	}
+
+	@Override
+	public String getCurrentWindow() {
+		return webDriver.getWindowHandle();
+	}
+
+	@Override
+	public List<String> getAllWindows() {
+		ArrayList<String> windows = new ArrayList<>(
+				webDriver.getWindowHandles());
+		return windows;
+	}
+
+	@Override
+	public void switchWindow(String window) {
+		webDriver.switchTo().window(window);
 	}
 
 }

@@ -1,5 +1,7 @@
 package com.github.jacoberson.pages.pageAssertions;
 
+import java.util.List;
+
 import org.testng.Assert;
 
 import com.github.jacoberson.pages.pageElements.AllProductsPageElements;
@@ -56,5 +58,36 @@ public class AllProductsPageAssertions extends BaseAssertions {
 
 		Assert.assertEquals(firstItem, actualFirstItem);
 		Assert.assertEquals(lastItem, actualLastItem);
+	}
+
+	public void assertTwitterLoads(List<String> windows) {
+		if (windows.size() < 2) {
+			Assert.fail();
+		}
+
+		for (var window : windows) {
+			if (!driver.getCurrentWindow().equals(window)) {
+				driver.switchWindow(window);
+				break;
+			}
+		}
+
+		Assert.assertEquals(driver.getUrl(), "https://twitter.com/saucelabs");
+	}
+
+	public void assertFacebookLoads(List<String> windows) {
+		if (windows.size() < 2) {
+			Assert.fail();
+		}
+
+		for (var window : windows) {
+			if (!driver.getCurrentWindow().equals(window)) {
+				driver.switchWindow(window);
+				break;
+			}
+		}
+
+		Assert.assertEquals(driver.getUrl(),
+				"https://www.facebook.com/saucelabs");
 	}
 }

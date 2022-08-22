@@ -34,7 +34,7 @@ public class AllProductsPageTests {
 	}
 
 	@Test
-	public void verifyCorrectTitle() {
+	public void verifyProductsPageTitle() {
 		productsPage.assertions().assertCorrectTitle();
 	}
 
@@ -58,6 +58,18 @@ public class AllProductsPageTests {
 		productsPage.sortItems(data.get("sortType"));
 		productsPage.assertions().assertCorrectSortOrder(data.get("firstItem"),
 				data.get("lastItem"));;
+	}
+
+	@Test
+	public void verifyTwitterLink() {
+		productsPage.goToTwitter();
+		productsPage.assertions().assertTwitterLoads(driver.getAllWindows());
+	}
+
+	@Test
+	public void verifyFacebookLink() {
+		productsPage.goToFacebook();
+		productsPage.assertions().assertFacebookLoads(driver.getAllWindows());
 	}
 
 }

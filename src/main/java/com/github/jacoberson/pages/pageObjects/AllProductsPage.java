@@ -46,7 +46,7 @@ public class AllProductsPage extends BasePage {
 	}
 
 	public void openItemPage(String itemName) {
-		elements().itemNameLink(itemName).click();;
+		elements().itemNameLink(itemName).click();
 	}
 
 	public void sortItems(String sortType) {
@@ -57,4 +57,11 @@ public class AllProductsPage extends BasePage {
 		return itemName.toLowerCase().replace(" ", "-");
 	}
 
+	public void goToTwitter() {
+		footer().elements().twitterLink().click();
+	}
+
+	public void goToFacebook() {
+		footer().elements().facebookLink().click();
+	}
 }

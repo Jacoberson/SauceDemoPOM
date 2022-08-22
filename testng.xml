@@ -11,4 +11,9 @@
       <class name="com.github.jacoberson.tests.AllProductsPageTests"/>
     </classes>
   </test> <!-- Test -->
+      <test thread-count="5" name="Single Product Tests">
+    <classes>
+      <class name="com.github.jacoberson.tests.SingleProductPageTests"/>
+    </classes>
+  </test> <!-- Test -->
 </suite> <!-- Suite -->

@@ -1,5 +1,7 @@
 package com.github.jacoberson.pages;
 
+import java.util.List;
+
 import com.github.jacoberson.pages.pageObjects.Footer;
 import com.github.jacoberson.pages.pageObjects.Header;
 
@@ -18,6 +20,10 @@ public abstract class BasePage {
 
 	public Footer footer() {
 		return new Footer(driver);
+	}
+
+	public List<String> getWindowHandles() {
+		return driver.getAllWindows();
 	}
 
 }
