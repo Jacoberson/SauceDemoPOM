@@ -11,11 +11,6 @@ public class SingleProductPageAssertions extends BaseAssertions {
 		this.elements = elements;
 	}
 
-	public void assertCorrectUrl(String url) {
-		String currentUrl = driver.getUrl();
-		Assert.assertEquals(currentUrl, url);;
-	}
-
 	public void assertItemDisplaysCorrectly(String itemName) {
 		Assert.assertTrue(elements.itemName().getText().equals(itemName));
 		Assert.assertFalse(elements.itemDescription().getText().isBlank());
