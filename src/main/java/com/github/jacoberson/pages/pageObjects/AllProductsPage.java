@@ -1,12 +1,12 @@
 package com.github.jacoberson.pages.pageObjects;
 
-import com.github.jacoberson.pages.BasePage;
+import com.github.jacoberson.pages.BaseLoggedInPage;
 import com.github.jacoberson.pages.pageAssertions.AllProductsPageAssertions;
 import com.github.jacoberson.pages.pageElements.AllProductsPageElements;
 
 import driverManagement.Driver;
 
-public class AllProductsPage extends BasePage {
+public class AllProductsPage extends BaseLoggedInPage {
 	private String url = configFileReader.properties
 			.getProperty("productsPageUrl");
 

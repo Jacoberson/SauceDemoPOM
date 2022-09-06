@@ -1,31 +1,25 @@
 package com.github.jacoberson.pages.pageObjects;
 
+import com.github.jacoberson.pages.BasePage;
 import com.github.jacoberson.pages.pageAssertions.LoginPageAssertions;
 import com.github.jacoberson.pages.pageElements.LoginPageElements;
 
 import driverManagement.Driver;
-import utilities.ConfigFileReader;
 
-public class LoginPage {
-	private ConfigFileReader configFileReader = new ConfigFileReader();
-	private LoginPageElements elements;
-	private LoginPageAssertions assertions;
-	private Driver driver;
+public class LoginPage extends BasePage {
 	private String url = configFileReader.properties
 			.getProperty("loginPageUrl");
 
 	public LoginPage(Driver driver) {
-		this.driver = driver;
+		super(driver);
 	}
 
 	public LoginPageElements elements() {
-		elements = new LoginPageElements(driver);
-		return elements;
+		return new LoginPageElements(driver);
 	}
 
 	public LoginPageAssertions assertions() {
-		assertions = new LoginPageAssertions(elements());
-		return assertions;
+		return new LoginPageAssertions(elements());
 	}
 
 	public String getUrl() {
