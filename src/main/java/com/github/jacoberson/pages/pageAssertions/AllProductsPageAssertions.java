@@ -60,7 +60,8 @@ public class AllProductsPageAssertions extends BaseAssertions {
 		Assert.assertEquals(lastItem, actualLastItem);
 	}
 
-	public void assertTwitterLoads(List<String> windows) {
+	public void assertSocialMediaLoads(List<String> windows,
+			String socialMediaUrl) {
 		if (windows.size() < 2) {
 			Assert.fail();
 		}
@@ -72,22 +73,6 @@ public class AllProductsPageAssertions extends BaseAssertions {
 			}
 		}
 
-		Assert.assertEquals(driver.getUrl(), "https://twitter.com/saucelabs");
-	}
-
-	public void assertFacebookLoads(List<String> windows) {
-		if (windows.size() < 2) {
-			Assert.fail();
-		}
-
-		for (var window : windows) {
-			if (!driver.getCurrentWindow().equals(window)) {
-				driver.switchWindow(window);
-				break;
-			}
-		}
-
-		Assert.assertEquals(driver.getUrl(),
-				"https://www.facebook.com/saucelabs");
+		Assert.assertEquals(driver.getUrl(), socialMediaUrl);
 	}
 }

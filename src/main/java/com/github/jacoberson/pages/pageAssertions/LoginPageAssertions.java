@@ -15,10 +15,6 @@ public class LoginPageAssertions {
 		Assert.assertTrue(elements.loginAlertList().size() == 0);
 	}
 
-	public void assertLoginAlertDisplays() {
-		Assert.assertTrue(elements.loginAlertList().size() > 0);
-	}
-
 	public void assertCorrectLoginAlert(String alertText) {
 		Assert.assertEquals(alertText, elements.loginAlert().getText());
 	}

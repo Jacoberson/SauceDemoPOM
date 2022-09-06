@@ -60,16 +60,13 @@ public class AllProductsPageTests {
 				data.get("lastItem"));;
 	}
 
-	@Test
-	public void verifyTwitterLink() {
-		productsPage.goToTwitter();
-		productsPage.assertions().assertTwitterLoads(driver.getAllWindows());
-	}
-
-	@Test
-	public void verifyFacebookLink() {
-		productsPage.goToFacebook();
-		productsPage.assertions().assertFacebookLoads(driver.getAllWindows());
+	@Test(dataProviderClass = TestUtils.class, dataProvider = "dp")
+	public void verifySocialMediaLinks(Hashtable<String, String> data) {
+		String socialMediaUrl = data.get("socialMediaUrl");
+		String socialMediaSite = data.get("socialMediaSite");
+		productsPage.goToSocialMedia(socialMediaSite);
+		productsPage.assertions().assertSocialMediaLoads(driver.getAllWindows(),
+				socialMediaUrl);
 	}
 
 }

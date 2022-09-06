@@ -20,15 +20,12 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class WebCoreDriver extends Driver {
 	private static WebDriver webDriver;
-	private static WebCoreDriver instance;
+	private static WebCoreDriver instance = new WebCoreDriver();
 
 	private WebCoreDriver() {
 	}
 
 	public static WebCoreDriver getInstance() {
-		if (instance == null) {
-			instance = new WebCoreDriver();
-		}
 		return instance;
 	}
 

@@ -11,11 +11,8 @@ public class FooterElements {
 		this.driver = driver;
 	}
 
-	public WebElement twitterLink() {
-		return driver.findByXpath("//a[contains(text(), 'Twitter')]");
-	}
-
-	public WebElement facebookLink() {
-		return driver.findByXpath("//a[contains(text(), 'Facebook')]");
+	public WebElement socialMediaLink(String socialMediaSite) {
+		return driver.findByXpath(
+				String.format("//a[contains(text(), '%s')]", socialMediaSite));
 	}
 }

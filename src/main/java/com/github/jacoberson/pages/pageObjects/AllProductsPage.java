@@ -57,11 +57,8 @@ public class AllProductsPage extends BasePage {
 		return itemName.toLowerCase().replace(" ", "-");
 	}
 
-	public void goToTwitter() {
-		footer().elements().twitterLink().click();
+	public void goToSocialMedia(String socialMediaSite) {
+		footer().elements().socialMediaLink(socialMediaSite).click();
 	}
 
-	public void goToFacebook() {
-		footer().elements().facebookLink().click();
-	}
 }
