@@ -7,7 +7,8 @@ import com.github.jacoberson.pages.pageElements.AllProductsPageElements;
 import driverManagement.Driver;
 
 public class AllProductsPage extends BasePage {
-	private String url = "https://www.saucedemo.com/inventory.html";
+	private String url = configFileReader.properties
+			.getProperty("productsPageUrl");
 
 	public AllProductsPage(Driver driver) {
 		super(driver);

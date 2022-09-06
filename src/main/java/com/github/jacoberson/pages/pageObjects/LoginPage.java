@@ -4,12 +4,15 @@ import com.github.jacoberson.pages.pageAssertions.LoginPageAssertions;
 import com.github.jacoberson.pages.pageElements.LoginPageElements;
 
 import driverManagement.Driver;
+import utilities.ConfigFileReader;
 
 public class LoginPage {
+	private ConfigFileReader configFileReader = new ConfigFileReader();
 	private LoginPageElements elements;
 	private LoginPageAssertions assertions;
 	private Driver driver;
-	private String url = "https://www.saucedemo.com/";
+	private String url = configFileReader.properties
+			.getProperty("loginPageUrl");
 
 	public LoginPage(Driver driver) {
 		this.driver = driver;

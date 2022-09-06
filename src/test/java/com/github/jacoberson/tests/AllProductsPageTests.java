@@ -8,6 +8,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import com.github.jacoberson.pages.pageObjects.AllProductsPage;
+import com.github.jacoberson.pages.pageObjects.LoginPage;
 import com.github.jacoberson.utilities.TestUtils;
 
 import driverManagement.Driver;
@@ -17,13 +18,15 @@ import enums.Browser;
 public class AllProductsPageTests {
 	private Driver driver;
 	private AllProductsPage productsPage;
+	private LoginPage loginPage;
 
 	@BeforeMethod
 	public void setUp() {
 		driver = WebCoreDriver.getInstance();
 		driver.start(Browser.CHROME);
+		loginPage = new LoginPage(driver);
 		productsPage = new AllProductsPage(driver);
-		driver.openPage("https://www.saucedemo.com/");
+		driver.openPage(loginPage.getUrl());
 		driver.addCookie(new Cookie("session-username", "standard_user"));
 		driver.openPage(productsPage.getUrl());
 	}

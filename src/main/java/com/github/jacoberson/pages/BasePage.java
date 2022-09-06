@@ -6,9 +6,11 @@ import com.github.jacoberson.pages.pageObjects.Footer;
 import com.github.jacoberson.pages.pageObjects.Header;
 
 import driverManagement.Driver;
+import utilities.ConfigFileReader;
 
 public abstract class BasePage {
 	protected Driver driver;
+	protected ConfigFileReader configFileReader = new ConfigFileReader();
 
 	public BasePage(Driver driver) {
 		this.driver = driver;
