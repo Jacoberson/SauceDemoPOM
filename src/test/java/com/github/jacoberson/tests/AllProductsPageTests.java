@@ -45,25 +45,34 @@ public class AllProductsPageTests {
 
 	@Test(dataProviderClass = TestUtils.class, dataProvider = "dp")
 	public void verifyAddAndRemoveButtons(Hashtable<String, String> data) {
-		productsPage.addItemsToCart(data.get("itemsToAdd"));
-		productsPage.removeItemsFromCart(data.get("itemsToRemove"));
-		productsPage.assertions().assertAddAndRemoveButtonCount(
-				data.get("addButtonCount"), data.get("removeButtonCount"));
-		productsPage.assertions()
-				.assertCartCountIsCorrect(data.get("cartCount"));
+		String itemsToAdd = data.get("itemsToAdd");
+		String itemsToRemove = data.get("itemsToRemove");
+		int addButtonCount = Integer.valueOf(data.get("addButtonCount"));
+		int removeButtonCount = Integer.valueOf(data.get("removeButtonCount"));
+		int cartCount = Integer.valueOf(data.get("cartCount"));
+
+		productsPage.addItemsToCart(itemsToAdd);
+		productsPage.removeItemsFromCart(itemsToRemove);
+		productsPage.assertions().assertAddAndRemoveButtonCount(addButtonCount,
+				removeButtonCount);
+		productsPage.assertions().assertCartCountIsCorrect(cartCount);
 	}
 
 	@Test(dataProviderClass = TestUtils.class, dataProvider = "dp")
 	public void verifyItemSort(Hashtable<String, String> data) {
-		productsPage.sortItems(data.get("sortType"));
-		productsPage.assertions().assertCorrectSortOrder(data.get("firstItem"),
-				data.get("lastItem"));;
+		String sortType = data.get("sortType");
+		String firstItem = data.get("firstItem");
+		String lastItem = data.get("lastItem");
+
+		productsPage.sortItems(sortType);
+		productsPage.assertions().assertCorrectSortOrder(firstItem, lastItem);
 	}
 
 	@Test(dataProviderClass = TestUtils.class, dataProvider = "dp")
 	public void verifySocialMediaLinks(Hashtable<String, String> data) {
 		String socialMediaUrl = data.get("socialMediaUrl");
 		String socialMediaSite = data.get("socialMediaSite");
+
 		productsPage.goToSocialMedia(socialMediaSite);
 		productsPage.assertions().assertSocialMediaLoads(driver.getAllWindows(),
 				socialMediaUrl);

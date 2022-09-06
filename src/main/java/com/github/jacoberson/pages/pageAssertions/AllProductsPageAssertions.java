@@ -32,20 +32,18 @@ public class AllProductsPageAssertions extends BaseAssertions {
 		}
 	}
 
-	public void assertAddAndRemoveButtonCount(String addCount,
-			String removeCount) {
-		Assert.assertEquals(elements.addToCartButtonList().size(),
-				Integer.valueOf(addCount));
-		Assert.assertEquals(elements.removeButtonList().size(),
-				Integer.valueOf(removeCount));
+	public void assertAddAndRemoveButtonCount(int addCount, int removeCount) {
+		Assert.assertEquals(elements.addToCartButtonList().size(), addCount);
+		Assert.assertEquals(elements.removeButtonList().size(), removeCount);
 	}
 
-	public void assertCartCountIsCorrect(String itemCount) {
-		if (Integer.valueOf(itemCount) == 0)
+	public void assertCartCountIsCorrect(int itemCount) {
+		if (itemCount == 0)
 			Assert.assertTrue(headerElements().itemCountList().size() == 0);
 
 		else
-			Assert.assertEquals(headerElements().itemCount().getText(),
+			Assert.assertEquals(
+					Integer.valueOf(headerElements().itemCount().getText()),
 					itemCount);
 	}
 

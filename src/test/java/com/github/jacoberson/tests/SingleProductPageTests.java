@@ -38,10 +38,12 @@ public class SingleProductPageTests {
 
 	@Test(dataProviderClass = TestUtils.class, dataProvider = "dp")
 	public void verifyCanOpenItemDetailsPage(Hashtable<String, String> data) {
-		productsPage.openItemPage(data.get("itemName"));
-		singleProductPage.assertions().assertCorrectUrl(data.get("itemUrl"));
-		singleProductPage.assertions()
-				.assertItemDisplaysCorrectly(data.get("itemName"));
+		String itemName = data.get("itemName");
+		String itemUrl = data.get("itemUrl");
+
+		productsPage.openItemPage(itemName);
+		singleProductPage.assertions().assertCorrectUrl(itemUrl);
+		singleProductPage.assertions().assertItemDisplaysCorrectly(itemName);
 	}
 
 	@Test
