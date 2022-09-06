@@ -15,7 +15,6 @@ import elementManagement.strategies.findStrategies.CssSelectorFindStrategy;
 import elementManagement.strategies.findStrategies.ElementFindStrategy;
 import elementManagement.strategies.findStrategies.IdFindStrategy;
 import elementManagement.strategies.findStrategies.XpathFindStrategy;
-import enums.Browser;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class WebCoreDriver extends Driver {
@@ -30,13 +29,13 @@ public class WebCoreDriver extends Driver {
 	}
 
 	@Override
-	public void start(Browser browser) {
+	public void start(String browser) {
 		webDriver = switch (browser) {
-			case FIREFOX -> {
+			case "Firefox" -> {
 				WebDriverManager.firefoxdriver().setup();
 				yield new FirefoxDriver();
 			}
-			case EDGE -> {
+			case "Edge" -> {
 				WebDriverManager.edgedriver().setup();
 				yield new EdgeDriver();
 			}
