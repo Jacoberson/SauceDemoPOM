@@ -7,7 +7,6 @@ import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
@@ -15,6 +14,7 @@ import elementManagement.strategies.findStrategies.ClassNameFindStrategy;
 import elementManagement.strategies.findStrategies.CssSelectorFindStrategy;
 import elementManagement.strategies.findStrategies.ElementFindStrategy;
 import elementManagement.strategies.findStrategies.IdFindStrategy;
+import elementManagement.strategies.findStrategies.TextFindStrategy;
 import elementManagement.strategies.findStrategies.XpathFindStrategy;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
@@ -42,8 +42,9 @@ public class WebCoreDriver extends Driver {
 			}
 			default -> {
 				WebDriverManager.chromedriver().setup();
-				yield new ChromeDriver(
-						new ChromeOptions().addArguments("--headless"));
+				// yield new ChromeDriver(
+				// new ChromeOptions().addArguments("--headless"));
+				yield new ChromeDriver();
 			}
 		};
 		webDriver.manage().window().maximize();
@@ -96,6 +97,11 @@ public class WebCoreDriver extends Driver {
 	}
 
 	@Override
+	public WebElement findByText(String text) {
+		return find(new TextFindStrategy(text));
+	}
+
+	@Override
 	public List<WebElement> findAllById(String id) {
 		return findAll(new IdFindStrategy(id));
 	}
@@ -114,6 +120,11 @@ public class WebCoreDriver extends Driver {
 	@Override
 	public List<WebElement> findAllByXpath(String xpath) {
 		return findAll(new XpathFindStrategy(xpath));
+	}
+
+	@Override
+	public List<WebElement> findAllByText(String text) {
+		return findAll(new TextFindStrategy(text));
 	}
 
 	// @Override

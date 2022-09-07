@@ -46,9 +46,8 @@ public class AllProductsPageElements {
 		return driver.findById(String.format("remove-%s", item));
 	}
 
-	public WebElement itemNameLink(String item) {
-		return driver.findByXpath(
-				String.format("//*[contains(text(), '%s')]", item));
+	public WebElement itemNameLink(String itemName) {
+		return driver.findByText(itemName);
 	}
 
 	public Select sortDropdown() {
