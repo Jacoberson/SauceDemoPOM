@@ -29,6 +29,10 @@ public class CartPageElements {
 		return driver.findAllByClassName("inventory_item_price");
 	}
 
+	public List<WebElement> quantityList() {
+		return driver.findAllByClassName("cart_quantity");
+	}
+
 	public WebElement removeButton(String item) {
 		return driver.findById(String.format("remove-%s", item));
 	}

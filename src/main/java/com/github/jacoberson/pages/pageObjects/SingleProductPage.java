@@ -31,5 +31,4 @@ public class SingleProductPage extends BasePage {
 	public void goToAllProductsPage() {
 		elements().backToProductsButton().click();
 	}
-
 }

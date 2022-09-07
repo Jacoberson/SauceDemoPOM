@@ -45,4 +45,12 @@ public class CartPage extends BaseLoggedInPage {
 		return itemName.toLowerCase().replace(" ", "-");
 	}
 
+	public void goToAllProductsPage() {
+		elements().continueShoppingButton().click();
+	}
+
+	public void goToCheckout() {
+		elements().checkoutButton().click();
+	}
+
 }

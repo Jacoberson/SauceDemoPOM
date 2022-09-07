@@ -14,4 +14,8 @@ public class Header {
 	public HeaderElements elements() {
 		return new HeaderElements(driver);
 	}
+
+	public void goToCartPage() {
+		elements().cartLink().click();
+	}
 }
