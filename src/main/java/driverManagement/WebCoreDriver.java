@@ -7,6 +7,7 @@ import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
@@ -41,7 +42,8 @@ public class WebCoreDriver extends Driver {
 			}
 			default -> {
 				WebDriverManager.chromedriver().setup();
-				yield new ChromeDriver();
+				yield new ChromeDriver(
+						new ChromeOptions().addArguments("--headless"));
 			}
 		};
 		webDriver.manage().window().maximize();

@@ -12,11 +12,11 @@ public class BaseAssertions {
 	protected Driver driver = WebCoreDriver.getInstance();
 
 	public HeaderElements headerElements() {
-		return new HeaderElements(WebCoreDriver.getInstance());
+		return new HeaderElements(driver);
 	}
 
 	public FooterElements footerElements() {
-		return new FooterElements(WebCoreDriver.getInstance());
+		return new FooterElements(driver);
 	}
 
 	public void assertCorrectUrl(String url) {
