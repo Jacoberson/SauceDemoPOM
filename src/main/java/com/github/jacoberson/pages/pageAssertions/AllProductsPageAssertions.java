@@ -13,8 +13,8 @@ public class AllProductsPageAssertions extends BaseAssertions {
 		this.elements = elements;
 	}
 
-	public void assertCorrectTitle() {
-		Assert.assertEquals(headerElements().title().getText(), "PRODUCTS");
+	public void assertCorrectTitle(String title) {
+		Assert.assertEquals(headerElements().title().getText(), title);
 	}
 
 	public void assertItemsDisplayCorrectly() {

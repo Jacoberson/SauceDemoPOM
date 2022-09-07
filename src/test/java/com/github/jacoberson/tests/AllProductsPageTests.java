@@ -2,31 +2,28 @@ package com.github.jacoberson.tests;
 
 import java.util.Hashtable;
 
-import org.openqa.selenium.Cookie;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import com.github.jacoberson.pages.pageObjects.AllProductsPage;
-import com.github.jacoberson.pages.pageObjects.LoginPage;
 import com.github.jacoberson.utilities.TestUtils;
 
 public class AllProductsPageTests extends BaseTest {
 	private AllProductsPage productsPage;
-	private LoginPage loginPage;
 
 	@BeforeMethod
 	public void startTest() {
 		setUp();
-		loginPage = new LoginPage(driver);
+		loginWithCookie();
 		productsPage = new AllProductsPage(driver);
-		driver.openPage(loginPage.getUrl());
-		driver.addCookie(new Cookie("session-username", "standard_user"));
 		driver.openPage(productsPage.getUrl());
 	}
 
 	@Test
 	public void verifyProductsPageTitle() {
-		productsPage.assertions().assertCorrectTitle();
+		String title = config.properties.getProperty("productsPageTitle");
+
+		productsPage.assertions().assertCorrectTitle(title);
 	}
 
 	@Test
