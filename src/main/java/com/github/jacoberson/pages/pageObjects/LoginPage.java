@@ -30,10 +30,6 @@ public class LoginPage extends BasePage {
 		return elements().loginAlertList().size() > 0;
 	}
 
-	public String getLoginAlertText() {
-		return elements().loginAlert().getText();
-	}
-
 	public void login(String username, String password) {
 		elements().usernameField().sendKeys(username);
 		elements().passwordField().sendKeys(password);

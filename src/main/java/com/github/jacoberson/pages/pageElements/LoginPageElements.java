@@ -32,7 +32,7 @@ public class LoginPageElements {
 	/**
 	 * Used to determine if login alert exists
 	 * 
-	 * @return list of 1 or empty list if no login alert
+	 * @return list of 1 if alert or empty list if no alert
 	 */
 	public List<WebElement> loginAlertList() {
 		return driver.findAllByCssSelector("h3[data-test='error']");

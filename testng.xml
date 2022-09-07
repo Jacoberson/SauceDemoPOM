@@ -21,4 +21,9 @@
 			<class name="com.github.jacoberson.tests.CartPageTests" />
 		</classes>
 	</test> <!-- Test -->
+		<test thread-count="5" name="Checkout Step One Tests">
+		<classes>
+			<class name="com.github.jacoberson.tests.CheckoutStepOneTests" />
+		</classes>
+	</test> <!-- Test -->
 </suite> <!-- Suite -->
