@@ -128,11 +128,11 @@ public class WebCoreDriver extends Driver {
 		return findAll(new TextFindStrategy(text));
 	}
 
-	// @Override
-	// public void getCookies() {
-	// // TODO Auto-generated method stub
-	//
-	// }
+	@Override
+	public List<Cookie> getCookies() {
+		List<Cookie> cookies = new ArrayList<>(webDriver.manage().getCookies());
+		return cookies;
+	}
 
 	@Override
 	public void addCookie(Cookie cookie) {

@@ -1,8 +1,10 @@
 package driverManagement.services;
 
+import java.util.List;
+
 import org.openqa.selenium.Cookie;
 
 public interface CookieService {
-	// public abstract void getCookies();
+	public abstract List<Cookie> getCookies();
 	public abstract void addCookie(Cookie cookie);
 }

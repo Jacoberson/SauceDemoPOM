@@ -1,5 +1,6 @@
 package com.github.jacoberson.tests;
 
+import java.io.IOException;
 import java.util.Hashtable;
 
 import org.testng.annotations.BeforeMethod;
@@ -14,7 +15,13 @@ public class AllProductsPageTests extends BaseTest {
 	@BeforeMethod
 	public void startTest() {
 		setUp();
-		loginWithCookie();
+
+		try {
+			loginWithCookie();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
 		productsPage = new AllProductsPage(driver);
 		driver.openPage(productsPage.getUrl());
 	}

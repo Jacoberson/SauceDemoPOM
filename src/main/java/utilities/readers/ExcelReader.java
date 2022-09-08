@@ -1,4 +1,4 @@
-package com.github.jacoberson.utilities.readers;
+package utilities.readers;
 
 import java.io.FileInputStream;
 import java.util.Calendar;

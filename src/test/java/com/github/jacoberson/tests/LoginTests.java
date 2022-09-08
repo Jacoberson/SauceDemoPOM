@@ -1,5 +1,6 @@
 package com.github.jacoberson.tests;
 
+import java.io.IOException;
 import java.util.Hashtable;
 
 import org.testng.annotations.BeforeMethod;
@@ -7,6 +8,8 @@ import org.testng.annotations.Test;
 
 import com.github.jacoberson.pages.pageObjects.LoginPage;
 import com.github.jacoberson.utilities.TestUtils;
+
+import utilities.writers.TextFileWriter;
 
 public class LoginTests extends BaseTest {
 	private LoginPage loginPage;
@@ -31,6 +34,14 @@ public class LoginTests extends BaseTest {
 
 			loginPage.closeAlert();
 			loginPage.assertions().assertLoginAlertDoesNotDisplay();
+		} else {
+			String cookie = driver.getCookies().get(0).toString();
+
+			try {
+				TextFileWriter.writeFile("cookie file", cookie);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 

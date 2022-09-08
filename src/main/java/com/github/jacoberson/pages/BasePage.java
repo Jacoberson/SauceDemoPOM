@@ -3,7 +3,7 @@ package com.github.jacoberson.pages;
 import java.util.List;
 
 import driverManagement.Driver;
-import utilities.ConfigFileReader;
+import utilities.readers.ConfigFileReader;
 
 public abstract class BasePage {
 	protected Driver driver;

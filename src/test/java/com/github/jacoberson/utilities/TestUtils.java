@@ -5,7 +5,7 @@ import java.util.Hashtable;
 
 import org.testng.annotations.DataProvider;
 
-import com.github.jacoberson.utilities.readers.ExcelReader;
+import utilities.readers.ExcelReader;
 
 public class TestUtils {
 	private String pathToExcel = System.getProperty("user.dir")

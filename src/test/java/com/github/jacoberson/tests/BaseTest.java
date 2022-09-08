@@ -1,13 +1,15 @@
 package com.github.jacoberson.tests;
 
-import org.openqa.selenium.Cookie;
+import java.io.IOException;
+
 import org.testng.annotations.AfterMethod;
 
 import com.github.jacoberson.pages.pageObjects.LoginPage;
 
 import driverManagement.Driver;
 import driverManagement.WebCoreDriver;
-import utilities.ConfigFileReader;
+import utilities.readers.ConfigFileReader;
+import utilities.readers.CookieFileReader;
 
 public class BaseTest {
 	protected Driver driver = WebCoreDriver.getInstance();
@@ -17,10 +19,13 @@ public class BaseTest {
 		driver.start(config.properties.getProperty("browser"));
 	}
 
-	public void loginWithCookie() {
+	public void loginWithCookie() throws IOException {
+		String pathToCookieFile = System.getProperty("user.dir")
+				+ "\\src\\test\\java\\com\\github\\jacoberson\\utilities\\textFiles\\cookie.txt";
+
 		LoginPage loginPage = new LoginPage(driver);
 		driver.openPage(loginPage.getUrl());
-		driver.addCookie(new Cookie("session-username", "standard_user"));
+		CookieFileReader.readFile(pathToCookieFile);
 	}
 
 	@AfterMethod
