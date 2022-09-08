@@ -3,7 +3,7 @@
 .project
 .settings/
 src/main/java/rough
-src/test/java/com/github/jacoberson/utilities/textFiles
+src/test/java/com/github/jacoberson/utilities/cookieFiles
  
 # Intellij
 .idea/
