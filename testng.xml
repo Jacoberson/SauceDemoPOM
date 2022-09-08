@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="Sauce Demo POM Suite">
+	<listeners>
+		<listener class-name="com.github.jacoberson.utilities.Listeners" />
+	</listeners>
 	<test thread-count="5" name="Login Tests">
 		<classes>
 			<class name="com.github.jacoberson.tests.LoginTests" />
@@ -21,7 +24,7 @@
 			<class name="com.github.jacoberson.tests.CartPageTests" />
 		</classes>
 	</test> <!-- Test -->
-		<test thread-count="5" name="Checkout Step One Tests">
+	<test thread-count="5" name="Checkout Step One Tests">
 		<classes>
 			<class name="com.github.jacoberson.tests.CheckoutStepOneTests" />
 		</classes>
