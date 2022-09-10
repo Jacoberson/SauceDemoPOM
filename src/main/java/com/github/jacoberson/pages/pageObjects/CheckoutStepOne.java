@@ -8,7 +8,7 @@ import driverManagement.Driver;
 
 public class CheckoutStepOne extends BaseLoggedInPage {
 	private String url = configFileReader.properties
-			.getProperty("checkoutYourInformationUrl");
+			.getProperty("checkoutStepOneUrl");
 
 	public CheckoutStepOne(Driver driver) {
 		super(driver);
