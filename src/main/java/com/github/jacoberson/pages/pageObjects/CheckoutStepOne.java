@@ -50,4 +50,8 @@ public class CheckoutStepOne extends BaseLoggedInPage {
 		elements().cancelButton().click();
 	}
 
+	public void goToCheckoutStepTwo() {
+		elements().continueButton().click();
+	}
+
 }

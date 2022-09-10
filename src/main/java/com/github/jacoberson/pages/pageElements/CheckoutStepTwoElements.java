@@ -21,7 +21,7 @@ public class CheckoutStepTwoElements {
 		return driver.findAllByClassName("inventory_item_name");
 	}
 
-	public List<WebElement> itemNameDescriptionList() {
+	public List<WebElement> itemDescriptionList() {
 		return driver.findAllByClassName("inventory_item_desc");
 	}
 
@@ -30,19 +30,21 @@ public class CheckoutStepTwoElements {
 	}
 
 	public WebElement paymentInformation() {
-		return driver.findByText("Payment");
+		return driver.findByText("Payment Information");
 	}
 
 	public WebElement cardInformation() {
-		return driver.findByText("SauceCart");
+		return driver.findByXpath(
+				"//*[contains(text(), 'Payment Information')]/following-sibling::div[1]");
 	}
 
 	public WebElement shippingInformation() {
-		return driver.findByText("Shipping");
+		return driver.findByText("Shipping Information");
 	}
 
 	public WebElement deliveryInformation() {
-		return driver.findByText("DELIVERY");
+		return driver.findByText(
+				"//*[contains(text(), 'Shipping Information')]/following-sibling::div[1]");
 	}
 
 	public WebElement subTotal() {
