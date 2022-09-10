@@ -29,6 +29,12 @@ public class SingleProductPageTests extends BaseTest {
 		driver.openPage(productsPage.getUrl());
 	}
 
+	private void singleProductPageTestSetup() {
+		String item = config.properties.getProperty("item");
+
+		productsPage.openItemPage(item);
+	}
+
 	@Test(dataProviderClass = TestUtils.class, dataProvider = "dp")
 	public void verifyCanOpenItemDetailsPage(Hashtable<String, String> data) {
 		String itemName = data.get("itemName");
@@ -41,9 +47,8 @@ public class SingleProductPageTests extends BaseTest {
 
 	@Test
 	public void verifyCanAddAndRemoveFromCart() {
-		String item = config.properties.getProperty("item");
+		singleProductPageTestSetup();
 
-		productsPage.openItemPage(item);
 		singleProductPage.addItemToCart();
 		singleProductPage.assertions().assertAddToCart();
 		singleProductPage.removeItemFromCart();
@@ -52,10 +57,9 @@ public class SingleProductPageTests extends BaseTest {
 
 	@Test
 	public void verifyCanGoBackToProductsPage() {
+		singleProductPageTestSetup();
 		String title = config.properties.getProperty("productsPageTitle");
-		String item = config.properties.getProperty("item");
 
-		productsPage.openItemPage(item);
 		singleProductPage.goToAllProductsPage();
 		productsPage.assertions().assertCorrectTitle(title);
 	}

@@ -41,11 +41,15 @@ public class CheckoutStepTwoTests extends BaseTest {
 		driver.openPage(productsPage.getUrl());
 	}
 
-	@Test
-	public void verifyCheckoutStepTwoTitle() {
+	private void checkoutStepTwoTestSetup() {
 		productsPage.header().goToCartPage();
 		cartPage.goToCheckout();
 		checkoutStepOne.enterCheckoutInformation(firstName, lastName, zipCode);
+	}
+
+	@Test
+	public void verifyCheckoutStepTwoTitle() {
+		checkoutStepTwoTestSetup();
 		String title = config.properties.getProperty("checkoutStepTwoTitle");
 
 		checkoutStepTwo.assertions().assertCorrectTitle(title);
@@ -57,9 +61,7 @@ public class CheckoutStepTwoTests extends BaseTest {
 		String itemUrl = config.properties.getProperty("itemUrl");
 
 		productsPage.addItemsToCart(item);
-		productsPage.header().goToCartPage();
-		cartPage.goToCheckout();
-		checkoutStepOne.enterCheckoutInformation(firstName, lastName, zipCode);
+		checkoutStepTwoTestSetup();
 		checkoutStepTwo.openItemPage(item);
 
 		singleProductPage.assertions().assertCorrectUrl(itemUrl);
@@ -73,9 +75,7 @@ public class CheckoutStepTwoTests extends BaseTest {
 		String deliveryInfo = config.properties.getProperty("shippingInfo");
 
 		productsPage.addItemsToCart(itemsToAdd);
-		productsPage.header().goToCartPage();
-		cartPage.goToCheckout();
-		checkoutStepOne.enterCheckoutInformation(firstName, lastName, zipCode);
+		checkoutStepTwoTestSetup();
 
 		checkoutStepTwo.assertions().assertItemsDisplayCorrectly();
 
@@ -96,11 +96,8 @@ public class CheckoutStepTwoTests extends BaseTest {
 
 	@Test
 	public void verifyCanGoBackToProductsPage() {
+		checkoutStepTwoTestSetup();
 		String title = config.properties.getProperty("productsPageTitle");
-
-		productsPage.header().goToCartPage();
-		cartPage.goToCheckout();
-		checkoutStepOne.enterCheckoutInformation(firstName, lastName, zipCode);
 
 		checkoutStepTwo.goToAllProductsPage();
 		productsPage.assertions().assertCorrectTitle(title);
