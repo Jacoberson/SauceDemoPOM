@@ -13,8 +13,8 @@ public class CheckoutStepTwoElements {
 		this.driver = driver;
 	}
 
-	public List<WebElement> cartList() {
-		return driver.findAllByClassName("cart_list");
+	public List<WebElement> itemCount() {
+		return driver.findAllByClassName("cart_item");
 	}
 
 	public List<WebElement> itemNameList() {
@@ -27,6 +27,10 @@ public class CheckoutStepTwoElements {
 
 	public List<WebElement> itemPriceList() {
 		return driver.findAllByClassName("inventory_item_price");
+	}
+
+	public WebElement itemNameLink(String itemName) {
+		return driver.findByText(itemName);
 	}
 
 	public WebElement paymentInformation() {
@@ -43,11 +47,11 @@ public class CheckoutStepTwoElements {
 	}
 
 	public WebElement deliveryInformation() {
-		return driver.findByText(
+		return driver.findByXpath(
 				"//*[contains(text(), 'Shipping Information')]/following-sibling::div[1]");
 	}
 
-	public WebElement subTotal() {
+	public WebElement subtotal() {
 		return driver.findByClassName("summary_subtotal_label");
 	}
 

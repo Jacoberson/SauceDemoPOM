@@ -33,20 +33,29 @@ public class CheckoutStepTwo extends BaseLoggedInPage {
 		return url;
 	}
 
+	public void openItemPage(String item) {
+		elements().itemNameLink(item).click();
+	}
+
+	/**
+	 * Convert amount to two decimal places to prevent rounding issues
+	 * 
+	 * @param amount
+	 *            to convert
+	 * @return text format of amount rounded to two decimal places
+	 */
 	public String convertToTwoDecimals(double amount) {
-		DecimalFormat df = new DecimalFormat("#.##");
+		DecimalFormat df = new DecimalFormat("0.00");
 		df.setRoundingMode(RoundingMode.HALF_UP);
 
 		return df.format(amount);
 	}
 
 	public String calculateSubtotal() {
-		int totalItems = elements().cartList().size();
-		double[] prices = new double[totalItems];
 		double subtotal = 0;
 
-		for (var price : prices) {
-			subtotal += price;
+		for (var price : elements().itemPriceList()) {
+			subtotal += Double.parseDouble(price.getText().split("\\$")[1]);
 		}
 
 		return convertToTwoDecimals(subtotal);

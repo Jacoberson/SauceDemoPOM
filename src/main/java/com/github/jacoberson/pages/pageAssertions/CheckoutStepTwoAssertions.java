@@ -30,25 +30,33 @@ public class CheckoutStepTwoAssertions extends BaseAssertions {
 		}
 	}
 
-	public void assertPaymentInformationDisplaysCorrectly() {
-		Assert.assertTrue(elements.paymentInformation().getText().isBlank());
-		Assert.assertTrue(elements.cardInformation().getText().isBlank());
+	public void assertPaymentInformationDisplaysCorrectly(String cardInfo) {
+		Assert.assertEquals(elements.cardInformation().getText(), cardInfo);
 	}
 
-	public void assertShippingInformationDisplaysCorrectly() {
-		Assert.assertTrue(elements.shippingInformation().getText().isBlank());
-		Assert.assertTrue(elements.deliveryInformation().getText().isBlank());
+	public void assertShippingInformationDisplaysCorrectly(
+			String deliveryInfo) {
+		Assert.assertEquals(elements.deliveryInformation().getText(),
+				deliveryInfo);
 	}
 
-	public void assertSubtotalCalculatesCorrectly() {
+	public void assertSubtotalCalculatesCorrectly(String subtotal) {
+		String displayedSubtotal = elements.subtotal().getText()
+				.split("\\$")[1];
 
+		Assert.assertEquals(subtotal, displayedSubtotal);
 	}
 
-	public void assertTaxCalculatesCorrectly() {
+	public void assertTaxCalculatesCorrectly(String tax) {
+		String displayedTax = elements.taxTotal().getText().split("\\$")[1];
 
+		Assert.assertEquals(tax, displayedTax);
 	}
 
-	public void assertOrderTotalCalculatesCorrectly() {
+	public void assertOrderTotalCalculatesCorrectly(String orderTotal) {
+		String displayedOrderTotal = elements.summaryTotal().getText()
+				.split("\\$")[1];
 
+		Assert.assertEquals(orderTotal, displayedOrderTotal);
 	}
 }

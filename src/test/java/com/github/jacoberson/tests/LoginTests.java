@@ -38,7 +38,7 @@ public class LoginTests extends BaseTest {
 			String cookie = driver.getCookies().get(0).toString();
 
 			try {
-				TextFileWriter.writeFile("cookie file", cookie);
+				TextFileWriter.writeFile("cookie_file", cookie);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

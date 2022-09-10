@@ -21,7 +21,7 @@ public class BaseTest {
 
 	public void loginWithCookie() throws IOException {
 		String pathToCookieFile = System.getProperty("user.dir")
-				+ "\\src\\test\\java\\com\\github\\jacoberson\\utilities\\textFiles\\cookie.txt";
+				+ "\\src\\test\\java\\com\\github\\jacoberson\\utilities\\cookieFiles\\cookie_file.txt";
 
 		LoginPage loginPage = new LoginPage(driver);
 		driver.openPage(loginPage.getUrl());

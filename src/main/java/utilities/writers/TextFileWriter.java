@@ -7,7 +7,7 @@ import java.io.IOException;
 
 public class TextFileWriter {
 	private static String pathToFile = System.getProperty("user.dir")
-			+ "\\src\\test\\java\\com\\github\\jacoberson\\utilities\\textFiles\\";
+			+ "\\src\\test\\java\\com\\github\\jacoberson\\utilities\\cookieFiles\\";
 
 	public static void writeFile(String fileName, String textToWrite)
 			throws IOException {
