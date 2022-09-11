@@ -2,32 +2,38 @@ package com.github.jacoberson.utilities;
 
 import org.testng.ITestListener;
 import org.testng.ITestResult;
-import org.testng.Reporter;
+
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.Status;
 
 public class Listeners implements ITestListener {
+	private ExtentReports extent = ExtentManager.getInstance();
 
 	@Override
 	public void onTestStart(ITestResult result) {
-		System.out.println(result.getMethod().getMethodName() + " started");
-		Reporter.log(result.getMethod().getMethodName() + " started");
+		// extent.createTest(result.getMethod().getMethodName());
+		// extent.flush();
 	}
 
 	@Override
 	public void onTestSuccess(ITestResult result) {
-		System.out.println(result.getMethod().getMethodName() + " passed");
-		Reporter.log(result.getMethod().getMethodName() + " passed");
+		extent.createTest(result.getMethod().getMethodName()).log(Status.PASS,
+				String.format("%s passed", result.getMethod().getMethodName()));
+		extent.flush();
 	}
 
 	@Override
 	public void onTestFailure(ITestResult result) {
-		System.out.println(result.getMethod().getMethodName() + " failed");
-		Reporter.log(result.getMethod().getMethodName() + " failed");
+		extent.createTest(result.getMethod().getMethodName()).log(Status.FAIL,
+				String.format("%s passed", result.getMethod().getMethodName()));
+		extent.flush();
 	}
 
 	@Override
 	public void onTestSkipped(ITestResult result) {
-		System.out.println(result.getMethod().getMethodName() + " skipped");
-		Reporter.log(result.getMethod().getMethodName() + " skipped");
+		extent.createTest(result.getMethod().getMethodName()).log(Status.SKIP,
+				String.format("%s passed", result.getMethod().getMethodName()));
+		extent.flush();
 	}
 
 }
