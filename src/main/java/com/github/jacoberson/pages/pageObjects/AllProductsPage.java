@@ -5,13 +5,13 @@ import com.github.jacoberson.pages.pageAssertions.AllProductsPageAssertions;
 import com.github.jacoberson.pages.pageElements.AllProductsPageElements;
 
 import driverManagement.Driver;
+import utilities.testHelpers.Helper;
 
 public class AllProductsPage extends BaseLoggedInPage {
-	private String url = configFileReader.properties
-			.getProperty("productsPageUrl");
 
 	public AllProductsPage(Driver driver) {
 		super(driver);
+		url = configFileReader.properties.getProperty("productsPageUrl");
 	}
 
 	public AllProductsPageElements elements() {
@@ -22,18 +22,10 @@ public class AllProductsPage extends BaseLoggedInPage {
 		return new AllProductsPageAssertions(elements());
 	}
 
-	public String getTitle() {
-		return header().elements().title().getText();
-	}
-
-	public String getUrl() {
-		return url;
-	}
-
 	public void addItemsToCart(String itemsToAdd) {
 		String[] items = itemsToAdd.split(", ");
 		for (String item : items) {
-			String formattedItemName = formatItemName(item);
+			String formattedItemName = Helper.formatItemName(item);
 			elements().specificAddToCartButton(formattedItemName).click();
 		}
 	}
@@ -41,7 +33,7 @@ public class AllProductsPage extends BaseLoggedInPage {
 	public void removeItemsFromCart(String itemsToRemove) {
 		String[] items = itemsToRemove.split(", ");
 		for (String item : items) {
-			String formattedItemName = formatItemName(item);
+			String formattedItemName = Helper.formatItemName(item);
 			elements().specificRemoveButton(formattedItemName).click();
 		}
 	}
@@ -52,10 +44,6 @@ public class AllProductsPage extends BaseLoggedInPage {
 
 	public void sortItems(String sortType) {
 		elements().sortDropdown().selectByVisibleText(sortType);
-	}
-
-	public String formatItemName(String itemName) {
-		return itemName.toLowerCase().replace(" ", "-");
 	}
 
 	public void goToSocialMedia(String socialMediaSite) {

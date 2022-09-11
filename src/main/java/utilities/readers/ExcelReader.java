@@ -28,7 +28,7 @@ public class ExcelReader {
 		}
 	}
 
-	// find whether sheets exists
+	// find whether sheet exists
 	public boolean isSheetExist(String sheetName) {
 		int index = workbook.getSheetIndex(sheetName);
 		if (index == -1) {

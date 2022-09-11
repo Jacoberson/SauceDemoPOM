@@ -10,11 +10,11 @@ import com.github.jacoberson.pages.pageElements.CheckoutStepTwoElements;
 import driverManagement.Driver;
 
 public class CheckoutStepTwo extends BaseLoggedInPage {
-	private String url = configFileReader.properties
-			.getProperty("checkoutStepTwoUrl");
+	private final double TAX_RATE = 0.08;
 
 	public CheckoutStepTwo(Driver driver) {
 		super(driver);
+		url = configFileReader.properties.getProperty("checkoutStepTwoUrl");
 	}
 
 	public CheckoutStepTwoElements elements() {
@@ -25,18 +25,6 @@ public class CheckoutStepTwo extends BaseLoggedInPage {
 		return new CheckoutStepTwoAssertions(elements());
 	}
 
-	public String getTitle() {
-		return header().elements().title().getText();
-	}
-
-	public String getUrl() {
-		return url;
-	}
-
-	public void openItemPage(String item) {
-		elements().itemNameLink(item).click();
-	}
-
 	/**
 	 * Convert amount to two decimal places to prevent rounding issues
 	 * 
@@ -44,7 +32,7 @@ public class CheckoutStepTwo extends BaseLoggedInPage {
 	 *            to convert
 	 * @return text format of amount rounded to two decimal places
 	 */
-	public String convertToTwoDecimals(double amount) {
+	private String convertToTwoDecimals(double amount) {
 		DecimalFormat df = new DecimalFormat("0.00");
 		df.setRoundingMode(RoundingMode.HALF_UP);
 
@@ -63,8 +51,7 @@ public class CheckoutStepTwo extends BaseLoggedInPage {
 
 	public String calculateTax() {
 		double subtotal = Double.parseDouble(calculateSubtotal());
-		double taxRate = 0.08;
-		double tax = subtotal * taxRate;
+		double tax = subtotal * TAX_RATE;
 
 		return convertToTwoDecimals(tax);
 	}
@@ -75,6 +62,10 @@ public class CheckoutStepTwo extends BaseLoggedInPage {
 		double orderTotal = subtotal + tax;
 
 		return convertToTwoDecimals(orderTotal);
+	}
+
+	public void openItemPage(String item) {
+		elements().itemNameLink(item).click();
 	}
 
 	public void goToAllProductsPage() {

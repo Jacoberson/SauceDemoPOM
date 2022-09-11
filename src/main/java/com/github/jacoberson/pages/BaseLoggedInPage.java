@@ -18,4 +18,9 @@ public class BaseLoggedInPage extends BasePage {
 	public Footer footer() {
 		return new Footer(driver);
 	}
+
+	public String getTitle() {
+		return header().elements().title().getText();
+	}
+
 }

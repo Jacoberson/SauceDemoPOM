@@ -7,11 +7,10 @@ import com.github.jacoberson.pages.pageElements.LoginPageElements;
 import driverManagement.Driver;
 
 public class LoginPage extends BasePage {
-	private String url = configFileReader.properties
-			.getProperty("loginPageUrl");
 
 	public LoginPage(Driver driver) {
 		super(driver);
+		url = configFileReader.properties.getProperty("loginPageUrl");
 	}
 
 	public LoginPageElements elements() {
@@ -20,10 +19,6 @@ public class LoginPage extends BasePage {
 
 	public LoginPageAssertions assertions() {
 		return new LoginPageAssertions(elements());
-	}
-
-	public String getUrl() {
-		return url;
 	}
 
 	public boolean loginAlertDisplays() {

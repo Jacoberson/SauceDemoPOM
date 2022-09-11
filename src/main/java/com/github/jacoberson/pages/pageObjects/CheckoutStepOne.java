@@ -7,11 +7,10 @@ import com.github.jacoberson.pages.pageElements.CheckoutStepOneElements;
 import driverManagement.Driver;
 
 public class CheckoutStepOne extends BaseLoggedInPage {
-	private String url = configFileReader.properties
-			.getProperty("checkoutStepOneUrl");
 
 	public CheckoutStepOne(Driver driver) {
 		super(driver);
+		url = configFileReader.properties.getProperty("checkoutStepOneUrl");
 	}
 
 	public CheckoutStepOneElements elements() {
@@ -20,14 +19,6 @@ public class CheckoutStepOne extends BaseLoggedInPage {
 
 	public CheckoutStepOneAssertions assertions() {
 		return new CheckoutStepOneAssertions(elements());
-	}
-
-	public String getTitle() {
-		return header().elements().title().getText();
-	}
-
-	public String getUrl() {
-		return url;
 	}
 
 	public boolean checkoutAlertDisplays() {
