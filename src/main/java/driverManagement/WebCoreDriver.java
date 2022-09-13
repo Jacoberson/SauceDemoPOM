@@ -1,9 +1,12 @@
 package driverManagement;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.openqa.selenium.Cookie;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -154,6 +157,13 @@ public class WebCoreDriver extends Driver {
 	@Override
 	public void switchWindow(String window) {
 		webDriver.switchTo().window(window);
+	}
+
+	@Override
+	public File captureScreenshot() {
+		File screenshotFile = ((TakesScreenshot) webDriver)
+				.getScreenshotAs(OutputType.FILE);
+		return screenshotFile;
 	}
 
 }

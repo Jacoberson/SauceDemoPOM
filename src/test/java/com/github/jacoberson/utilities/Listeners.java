@@ -1,15 +1,29 @@
 package com.github.jacoberson.utilities;
 
+import java.io.IOException;
+
+import org.testng.ISuite;
+import org.testng.ISuiteListener;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.Status;
 
-public class Listeners implements ITestListener {
+public class Listeners implements ITestListener, ISuiteListener {
 	private ExtentReports extent = ExtentManager.getInstance();
 	private ExtentTest test;
+
+	@Override
+	public void onStart(ISuite suite) {
+		try {
+			TestUtils.clearScreenshots();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 
 	@Override
 	public void onTestStart(ITestResult result) {
@@ -30,9 +44,23 @@ public class Listeners implements ITestListener {
 	public void onTestFailure(ITestResult result) {
 		String methodName = result.getName();
 		Throwable throwable = result.getThrowable();
+		String screenshotPath = null;
+
+		try {
+			TestUtils.captureScreenshot();
+			screenshotPath = System.getProperty("user.dir")
+					+ "\\target\\surefire-reports\\screenshots\\"
+					+ TestUtils.screenshotName;
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 
 		test.log(Status.FAIL, String.format("%s failed with exception %s",
 				methodName, throwable));
+		test.log(Status.FAIL, MediaEntityBuilder
+				.createScreenCaptureFromPath(screenshotPath).build());
+		test.log(Status.INFO, "<a target='_blank' href=" + screenshotPath
+				+ ">Fullscreen Screenshot</a>");
 		extent.flush();
 	}
 

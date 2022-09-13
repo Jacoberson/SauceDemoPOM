@@ -3,6 +3,7 @@ package com.github.jacoberson.tests;
 import java.io.IOException;
 import java.util.Hashtable;
 
+import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -19,6 +20,11 @@ public class LoginTests extends BaseTest {
 		setUp();
 		loginPage = new LoginPage(driver);
 		driver.openPage(loginPage.getUrl());
+	}
+
+	@Test
+	public void fakeFail() {
+		Assert.fail("failing on purpose to test screenshots");
 	}
 
 	@Test(dataProviderClass = TestUtils.class, dataProvider = "dp")
