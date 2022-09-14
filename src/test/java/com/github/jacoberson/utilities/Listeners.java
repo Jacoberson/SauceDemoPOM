@@ -57,7 +57,7 @@ public class Listeners implements ITestListener, ISuiteListener {
 
 		test.log(Status.FAIL, String.format("%s failed with exception %s",
 				methodName, throwable));
-		test.log(Status.FAIL, MediaEntityBuilder
+		test.log(Status.INFO, MediaEntityBuilder
 				.createScreenCaptureFromPath(screenshotPath).build());
 		test.log(Status.INFO, "<a target='_blank' href=" + screenshotPath
 				+ ">Fullscreen Screenshot</a>");

@@ -18,4 +18,8 @@ public class LoginPageAssertions {
 	public void assertCorrectLoginAlert(String alertText) {
 		Assert.assertEquals(alertText, elements.loginAlert().getText());
 	}
+
+	public void fakeFail() {
+		Assert.fail();
+	}
 }
