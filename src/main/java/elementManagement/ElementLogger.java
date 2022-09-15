@@ -10,7 +10,7 @@ public class ElementLogger {
 
 	public void click(WebElement element) {
 		element.click();
-		logger.info("clicking");
+		logger.info(String.format("Clicking on element %s", element));
 	}
 
 	public void typeText(WebElement element, String textToType) {

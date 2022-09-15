@@ -2,6 +2,7 @@ package com.github.jacoberson.utilities;
 
 import java.io.IOException;
 
+import org.apache.logging.log4j.Logger;
 import org.testng.ISuite;
 import org.testng.ISuiteListener;
 import org.testng.ITestListener;
@@ -11,10 +12,12 @@ import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.Status;
+import com.github.jacoberson.utilities.LogSetup.ApplicationLogger;
 
 public class Listeners implements ITestListener, ISuiteListener {
 	private ExtentReports extent = ExtentManager.getInstance();
 	private ExtentTest test;
+	private static Logger logger = ApplicationLogger.getApplicationLogger();
 
 	@Override
 	public void onStart(ISuite suite) {
@@ -30,6 +33,8 @@ public class Listeners implements ITestListener, ISuiteListener {
 		String methodName = result.getName();
 
 		test = extent.createTest(methodName);
+		logger.info(
+				String.format("STARTING TEST %s", methodName.toUpperCase()));
 	}
 
 	@Override
