@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="warn" name="Sauce Demo POM" packages="">
+	<Appenders>
+		<File name="Logs" fileName="target/logs/logs-${date:yyyy-MM-dd}">
+			<PatternLayout>
+				<Pattern>%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %m%n</Pattern>
+			</PatternLayout>
+		</File>
+	</Appenders>
+	<Loggers>
+		<Root level="info">
+			<AppenderRef ref="Logs" />
+		</Root>
+	</Loggers>
+</Configuration>

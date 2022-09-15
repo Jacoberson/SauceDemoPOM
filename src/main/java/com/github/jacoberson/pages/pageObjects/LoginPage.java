@@ -26,12 +26,12 @@ public class LoginPage extends BasePage {
 	}
 
 	public void login(String username, String password) {
-		elements().usernameField().sendKeys(username);
-		elements().passwordField().sendKeys(password);
-		elements().loginButton().click();
+		logger.typeText(elements().usernameField(), username);
+		logger.typeText(elements().passwordField(), password);
+		logger.click(elements().loginButton());
 	}
 
 	public void closeAlert() {
-		elements().closeAlertButton().click();
+		logger.click(elements().closeAlertButton());
 	}
 }

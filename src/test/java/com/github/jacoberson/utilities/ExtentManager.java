@@ -9,7 +9,7 @@ public class ExtentManager {
 	private static ExtentReports extent;
 	private static ExtentSparkReporter spark;
 	private static String configFilePath = System.getProperty("user.dir")
-			+ "\\src\\test\\java\\com\\github\\jacoberson\\utilities\\extentConfig\\extentconfig.xml";
+			+ "\\src\\main\\resources\\extentconfig.xml";
 
 	public static ExtentReports getInstance() {
 		extent = new ExtentReports();
