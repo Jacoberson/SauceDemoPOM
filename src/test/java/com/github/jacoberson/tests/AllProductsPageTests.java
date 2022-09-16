@@ -68,7 +68,7 @@ public class AllProductsPageTests extends BaseTest {
 		String socialMediaUrl = data.get("socialMediaUrl");
 		String socialMediaSite = data.get("socialMediaSite");
 
-		productsPage.goToSocialMedia(socialMediaSite);
+		productsPage.footer().goToSocialMedia(socialMediaSite);
 		productsPage.assertions().assertSocialMediaLoads(driver.getAllWindows(),
 				socialMediaUrl);
 	}

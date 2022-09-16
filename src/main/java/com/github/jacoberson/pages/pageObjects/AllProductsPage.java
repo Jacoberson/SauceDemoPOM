@@ -46,8 +46,4 @@ public class AllProductsPage extends BaseLoggedInPage {
 		logger.select(elements().sortDropdown(), sortType);
 	}
 
-	public void goToSocialMedia(String socialMediaSite) {
-		logger.click(footer().elements().socialMediaLink(socialMediaSite));
-	}
-
 }
