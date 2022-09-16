@@ -12,7 +12,7 @@ public class BaseLoggedInPage extends BasePage {
 	}
 
 	public Header header() {
-		return new Header(driver);
+		return new Header(driver, logger);
 	}
 
 	public Footer footer() {

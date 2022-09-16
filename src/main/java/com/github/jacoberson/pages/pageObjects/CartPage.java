@@ -26,20 +26,20 @@ public class CartPage extends BaseLoggedInPage {
 		String[] items = itemsToRemove.split(", ");
 		for (String item : items) {
 			String formattedItemName = Helper.formatItemName(item);
-			elements().removeButton(formattedItemName).click();
+			logger.click(elements().removeButton(formattedItemName));
 		}
 	}
 
 	public void openItemPage(String itemName) {
-		elements().itemNameLink(itemName).click();
+		logger.click(elements().itemNameLink(itemName));
 	}
 
 	public void goToAllProductsPage() {
-		elements().continueShoppingButton().click();
+		logger.click(elements().continueShoppingButton());
 	}
 
 	public void goToCheckout() {
-		elements().checkoutButton().click();
+		logger.click(elements().checkoutButton());
 	}
 
 }

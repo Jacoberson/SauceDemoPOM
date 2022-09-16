@@ -21,14 +21,14 @@ public class SingleProductPage extends BasePage {
 	}
 
 	public void addItemToCart() {
-		elements().addToCartButton().click();
+		logger.click(elements().addToCartButton());
 	}
 
 	public void removeItemFromCart() {
-		elements().removeButton().click();
+		logger.click(elements().removeButton());
 	}
 
 	public void goToAllProductsPage() {
-		elements().backToProductsButton().click();
+		logger.click(elements().backToProductsButton());
 	}
 }

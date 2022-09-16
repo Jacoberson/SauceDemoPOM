@@ -27,22 +27,22 @@ public class CheckoutStepOne extends BaseLoggedInPage {
 
 	public void enterCheckoutInformation(String firstName, String lastName,
 			String zipCode) {
-		elements().firstNameField().sendKeys(firstName);
-		elements().lastNameField().sendKeys(lastName);
-		elements().zipCodeField().sendKeys(zipCode);
-		elements().continueButton().click();
+		logger.typeText(elements().firstNameField(), firstName);
+		logger.typeText(elements().lastNameField(), lastName);
+		logger.typeText(elements().zipCodeField(), zipCode);
+		logger.click(elements().continueButton());
 	}
 
 	public void closeAlert() {
-		elements().closeAlertButton().click();
+		logger.click(elements().closeAlertButton());
 	}
 
 	public void goToCart() {
-		elements().cancelButton().click();
+		logger.click(elements().cancelButton());
 	}
 
 	public void goToCheckoutStepTwo() {
-		elements().continueButton().click();
+		logger.click(elements().continueButton());
 	}
 
 }

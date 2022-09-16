@@ -26,7 +26,7 @@ public class AllProductsPage extends BaseLoggedInPage {
 		String[] items = itemsToAdd.split(", ");
 		for (String item : items) {
 			String formattedItemName = Helper.formatItemName(item);
-			elements().specificAddToCartButton(formattedItemName).click();
+			logger.click(elements().specificAddToCartButton(formattedItemName));
 		}
 	}
 
@@ -34,20 +34,20 @@ public class AllProductsPage extends BaseLoggedInPage {
 		String[] items = itemsToRemove.split(", ");
 		for (String item : items) {
 			String formattedItemName = Helper.formatItemName(item);
-			elements().specificRemoveButton(formattedItemName).click();
+			logger.click(elements().specificRemoveButton(formattedItemName));
 		}
 	}
 
 	public void openItemPage(String itemName) {
-		elements().itemNameLink(itemName).click();
+		logger.click(elements().itemNameLink(itemName));
 	}
 
 	public void sortItems(String sortType) {
-		elements().sortDropdown().selectByVisibleText(sortType);
+		logger.select(elements().sortDropdown(), sortType);
 	}
 
 	public void goToSocialMedia(String socialMediaSite) {
-		footer().elements().socialMediaLink(socialMediaSite).click();
+		logger.click(footer().elements().socialMediaLink(socialMediaSite));
 	}
 
 }

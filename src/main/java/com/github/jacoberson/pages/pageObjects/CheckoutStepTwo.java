@@ -65,15 +65,15 @@ public class CheckoutStepTwo extends BaseLoggedInPage {
 	}
 
 	public void openItemPage(String item) {
-		elements().itemNameLink(item).click();
+		logger.click(elements().itemNameLink(item));
 	}
 
 	public void goToAllProductsPage() {
-		elements().cancelButton().click();
+		logger.click(elements().cancelButton());
 	}
 
 	public void goToCheckoutComplete() {
-		elements().finishButton().click();
+		logger.click(elements().finishButton());
 	}
 
 }

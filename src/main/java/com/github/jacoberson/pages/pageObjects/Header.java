@@ -3,12 +3,15 @@ package com.github.jacoberson.pages.pageObjects;
 import com.github.jacoberson.pages.pageElements.HeaderElements;
 
 import driverManagement.Driver;
+import elementManagement.ElementLogger;
 
 public class Header {
 	private Driver driver;
+	private ElementLogger logger;
 
-	public Header(Driver driver) {
+	public Header(Driver driver, ElementLogger logger) {
 		this.driver = driver;
+		this.logger = logger;
 	}
 
 	public HeaderElements elements() {
@@ -16,6 +19,6 @@ public class Header {
 	}
 
 	public void goToCartPage() {
-		elements().cartLink().click();
+		logger.click(elements().cartLink());
 	}
 }
