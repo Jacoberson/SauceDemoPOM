@@ -31,10 +31,12 @@ public class Listeners implements ITestListener, ISuiteListener {
 	@Override
 	public void onTestStart(ITestResult result) {
 		String methodName = result.getName();
+		String testClass = TestUtils
+				.testClassFormatter(result.getTestClass().toString());
+		String testName = String.format("%s - %s", methodName, testClass);
 
-		test = extent.createTest(methodName);
-		logger.info(
-				String.format("STARTING TEST %s", methodName.toUpperCase()));
+		test = extent.createTest(testName);
+		logger.info(String.format("STARTING TEST %s", testName.toUpperCase()));
 	}
 
 	@Override

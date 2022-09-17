@@ -34,4 +34,9 @@
 			<class name="com.github.jacoberson.tests.CheckoutStepTwoTests" />
 		</classes>
 	</test> <!-- Test -->
+	<test thread-count="5" name="Checkout Step Three Tests">
+		<classes>
+			<class name="com.github.jacoberson.tests.CheckoutStepThreeTests" />
+		</classes>
+	</test> <!-- Test -->
 </suite> <!-- Suite -->

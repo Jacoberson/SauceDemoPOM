@@ -68,6 +68,12 @@ public class TestUtils {
 		} else {
 			screenshotFiles.mkdir();
 		}
+	}
 
+	public static String testClassFormatter(String testName) {
+		String formattedTestClass = testName.replace("]", "")
+				.split("com.github.jacoberson.tests.")[1];
+
+		return formattedTestClass;
 	}
 }
