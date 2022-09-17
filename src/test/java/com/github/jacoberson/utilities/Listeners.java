@@ -36,7 +36,7 @@ public class Listeners implements ITestListener, ISuiteListener {
 		String testName = String.format("%s - %s", methodName, testClass);
 
 		test = extent.createTest(testName);
-		logger.info(String.format("STARTING TEST %s", testName.toUpperCase()));
+		logger.trace(String.format("STARTING TEST %s", testName.toUpperCase()));
 	}
 
 	@Override
