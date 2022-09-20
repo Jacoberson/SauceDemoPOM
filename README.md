@@ -5,7 +5,7 @@ This is a automation suite for [SauceDemo.com](https://www.saucedemo.com/).
 ### Built with
 
 - [Selenium WebDriver](https://www.selenium.dev/documentation/webdriver/)
-- Eclipse IDE
+- [Eclipse IDE](https://www.eclipse.org/ide/)
 - Maven
 - Data Driven Framework
 - Page Object Model
